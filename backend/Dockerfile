@@ -1,6 +1,6 @@
 FROM node:20
 # Create a directory in container or set a directory
-WORKDIR /expense/backend
+WORKDIR /opt/backend
 # copy the code into the above created directory
 COPY package.json .
 COPY *.js .
