@@ -7,6 +7,6 @@ COPY *.js .
 # Install dependencies
 RUN npm install 
 # Create Environment variable to connect to DB
-ENV DB_HOST="mysql"
+ENV DB_HOST="mysqlcontainer"
 # Command to run the node
 CMD ["node", "index.js"]
