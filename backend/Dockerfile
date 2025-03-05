@@ -7,7 +7,7 @@ COPY *.js .
 # Install dependencies
 RUN npm install 
 # Create Environment variable to connect to DB. Give the mysql container name else backend will not be able to connect to mysql
-# ENV DB_HOST="mysqlcontainer"
-ENV DB_HOST="localhost"
+ENV DB_HOST="mysqlcontainer"
+#ENV DB_HOST="localhost" # used when using host network
 # Command to run the node
 CMD ["node", "index.js"]
