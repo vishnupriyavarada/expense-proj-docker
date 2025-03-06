@@ -7,7 +7,7 @@ services:
       - expense
     container_name: mysql
     volumes:
-      - mysql-data: /var/lib/mysql # this the location/directory where mysql stores the data in OS
+      - mysql-data:/var/lib/mysql # this the location/directory where mysql stores the data in OS
     
   backend:
     image: backend:1.0.0
