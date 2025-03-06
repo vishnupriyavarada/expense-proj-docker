@@ -1,0 +1,37 @@
+
+services:
+  # docker run -d --name mysql --v mysql-data:/var/lib/mysql --network expense mysql:1.0.0
+  mysql:
+    image: mysql:1.0.0
+    networks:
+      - expense
+    container_name: mysql
+    volumes:
+      - mysql-data: /var/lib/mysql # this the location/directory where mysql stores the data in OS
+    
+  backend:
+    image: backend:1.0.0
+    networks:
+      - expense
+    container_name: backend
+    # volumes:  - Volumes not required for backend as backend is stateless
+    depends_on:
+      - mysql
+    
+  frontend:
+    image: frontend:1.0.0
+    ports:
+      - 80:80
+    networks:
+      - expense
+    container_name: frontend
+    # volumes:  - Volumes not required for backend as backend is stateless
+    depends_on:
+      - backend
+
+networks:
+  # The presence of these objects is sufficient to define them
+  expense:
+
+volumes:
+  mysql:
