@@ -1,14 +1,11 @@
+networks:
+  # The presence of these objects is sufficient to define them
+  expense: {}
 
-services:
-  # docker run -d --name mysql --v mysql-data:/var/lib/mysql --network expense mysql:1.0.0
+volumes:
   mysql:
-    image: mysql:1.0.0
-    networks:
-      - expense
-    container_name: mysql
-    volumes:
-      - mysql:/var/lib/mysql # this the location/directory where mysql stores the data in OS
-    
+
+services:   
   backend:
     image: backend:1.0.0
     command: sh -c "sleep 500 && node /opt/backend/index.js" # add 5 sec delay for backend to run as sometimes
@@ -16,11 +13,19 @@ services:
     networks:
       - expense
     container_name: backend
-    # ports:
-    #   - 8080:80
     # volumes:  - Volumes not required for backend as backend is stateless
     depends_on:
       - mysql
+
+ # docker run -d --name mysql --v mysql-data:/var/lib/mysql --network expense mysql:1.0.0   
+  mysql:
+    image: mysql:1.0.0
+    networks:
+      - expense
+    container_name: mysql
+    volumes:
+      - mysql:/var/lib/mysql # this the location/directory where mysql stores the data in OS
+
     
   frontend:
     image: frontend:1.0.0
@@ -33,9 +38,3 @@ services:
     depends_on:
       - backend
 
-networks:
-  # The presence of these objects is sufficient to define them
-  expense: {}
-
-volumes:
-  mysql:
