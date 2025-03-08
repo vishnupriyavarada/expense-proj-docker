@@ -11,7 +11,7 @@ RUN chown -R expense:expense /opt/backend
 WORKDIR /opt/backend
 # copy the code into the above created directory
 COPY package.json .
-COPY *.js .
+COPY *.js ./
 # Install dependencies
 RUN npm install 
 # Create Environment variable to connect to DB. Give the mysql container name else backend will not be able to connect to mysql
