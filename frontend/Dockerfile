@@ -5,6 +5,7 @@ RUN rm -rf /usr/share/nginx/html/index.html
 # Remove the container nginx.conf
 RUN rm -rf /etc/nginx/nginx.conf
 
+# code added  to create a non root user and 
 RUN mkdir -p /var/cache/nginx/client_temp && \
     mkdir -p /var/cache/nginx/proxy_temp && \
     mkdir -p /var/cache/nginx/fastcgi_temp && \
