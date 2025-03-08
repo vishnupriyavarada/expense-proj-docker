@@ -1,4 +1,6 @@
-FROM node:20
+# FROM node:20 - Replacing the base image with node:20.18.3-alpine3.21. as alpine is the smallest OS and 
+                 # can reduce the size of the image
+FROM node:20.18.3-alpine3.21
 # Create a directory in container or set a directory
 WORKDIR /opt/backend
 # copy the code into the above created directory
