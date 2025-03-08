@@ -16,8 +16,8 @@ services:
     networks:
       - expense
     container_name: backend
-    ports:
-      - 8080:80
+    # ports:
+    #   - 8080:80
     # volumes:  - Volumes not required for backend as backend is stateless
     depends_on:
       - mysql
