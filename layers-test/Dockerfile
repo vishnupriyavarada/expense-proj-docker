@@ -10,16 +10,13 @@ FROM node:20.18.3-alpine3.21
 RUN addgroup -S expense && adduser -S expense -G expense && \
     mkdir /opt/backend && \
     chown -R expense:expense /opt/backend
-
 WORKDIR /opt/backend
+ENV DB_HOST="mysql"
+USER expense
 
+# frequently changing below 3 instructions are put at bottom so that top layers are got from cache there by reducing build time
 COPY package.json .
 COPY *.js ./
-
 RUN npm install 
-
-ENV DB_HOST="mysql"
-
-USER expense
 
 CMD ["node", "index.js"]
